@@ -1,0 +1,60 @@
+.destinations {
+}
+
+.destination__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 282px);
+  gap: 17px;
+  margin-bottom: 67px;
+  padding-left: 0;
+}
+
+.card {
+  list-style-type: none;
+  max-width: 282px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.card__image {
+  height: 282px;
+  width: 282px;
+  background-color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card__content {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.card__title {
+  color: black;
+  margin-left: 20px;
+}
+
+.card__like-button {
+  background: transparent;
+  padding: 0;
+  width: 21px;
+  height: 18px;
+  align-items: center;
+  margin-right: 30px;
+  border: none;
+}
+
+@media screen and (max-width: 480px) {
+  .destination__cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
