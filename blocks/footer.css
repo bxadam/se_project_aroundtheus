@@ -1,5 +1,11 @@
 .footer {
+  margin-bottom: 60px;
 }
 
 .footer__text {
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
 }
