@@ -61,7 +61,8 @@
 @media screen and (max-width: 880px) {
   .destination__cards {
     display: flex;
-    flex-direction: column;
+    width: 650px;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
   }
