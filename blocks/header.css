@@ -11,17 +11,11 @@
   .header__logo {
     margin-left: 40px;
   }
-
-  .header {
-  }
 }
 
 @media screen and (max-width: 480px) {
   .header__logo {
     margin-top: 28px;
     margin-left: 27px;
-  }
-
-  .header {
   }
 }
