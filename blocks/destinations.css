@@ -1,6 +1,3 @@
-.destinations {
-}
-
 .destination__cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
@@ -39,7 +36,7 @@
 .card__title {
   color: black;
   margin-left: 20px;
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-size: 24px;
   font-weight: 900;
   line-height: 29px;
@@ -58,12 +55,21 @@
   border: none;
 }
 
+.card__like-button:hover {
+  opacity: 50%;
+}
+
 @media screen and (max-width: 880px) {
   .destination__cards {
     display: flex;
-    width: 650px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card__title {
+    font-size: 24px;
   }
 }
