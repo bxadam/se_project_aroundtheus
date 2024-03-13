@@ -126,6 +126,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 36px;
   }
 
   .profile__picture {
@@ -159,5 +160,19 @@
     background-repeat: no-repeat;
     width: 282px;
     height: 50px;
+  }
+
+  .profile__edit-button {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .profile__title {
+    max-width: 150px;
+  }
+  .profile__subtext {
+    max-width: 300px;
   }
 }
