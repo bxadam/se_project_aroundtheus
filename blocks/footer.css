@@ -3,6 +3,7 @@
 }
 
 .footer__text {
+  margin: 0;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -17,5 +18,11 @@
 
   .footer__text {
     padding-left: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer__text {
+    font-size: 14px;
   }
 }

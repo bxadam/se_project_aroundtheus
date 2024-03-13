@@ -17,5 +17,8 @@
   .header__logo {
     margin-top: 28px;
     margin-left: 27px;
+    margin-bottom: 32px;
+    height: 24px;
+    width: 126px;
   }
 }
