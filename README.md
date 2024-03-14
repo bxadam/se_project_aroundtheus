@@ -13,3 +13,5 @@ This project is made so all the elements are displayed correctly on popular scre
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
 ** VIDEO LINK HERE: https://www.loom.com/share/e7e1ef8af7e34e1083b30c1bc079d5e3 **
+
+** Link to GitHub pages : bxadam.github.io/se_project_aroundtheus/ **

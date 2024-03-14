@@ -154,6 +154,7 @@
     text-align: center;
     padding: 0;
     font-size: 14px;
+    line-height: 16.94px;
   }
 
   .profile__add-button {
@@ -169,9 +170,9 @@
 
 @media screen and (max-width: 400px) {
   .profile__title {
-    max-width: 150px;
+    max-width: 196px;
   }
   .profile__subtext {
-    max-width: 300px;
+    max-width: 282px;
   }
 }
