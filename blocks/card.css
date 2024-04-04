@@ -20,9 +20,7 @@
   align-items: center;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding-left: 20px;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding: 25px;
 }
 
 .card__title {
@@ -38,12 +36,13 @@
 }
 
 .card__like-button {
-  background: transparent;
+  background-image: url(../images/black-heart.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
   padding: 0;
-  width: 21px;
+  width: 26px;
   height: 18px;
   align-items: center;
-  margin-right: 30px;
   border: none;
 }
 

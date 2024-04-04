@@ -37,6 +37,9 @@ const profileSubtext = document.querySelector("#profile-subtext");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileSubtextInput = document.querySelector("#profile-subtext-input");
 const profileModalForm = profileEditModal.querySelector(".modal__form");
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
+const cardListElement = document.querySelector(".cards__list");
 
 /**
  * Functions
@@ -44,6 +47,21 @@ const profileModalForm = profileEditModal.querySelector(".modal__form");
 
 function closePopUp() {
   profileEditModal.classList.remove("modal__opened");
+}
+
+function getCardElement(cardData) {
+  //clone the template element with all its content and store it in a cardElement variable
+  const cardElement = cardTemplate.cloneNode(true);
+  //access the card title and image and store them in variables
+  const cardImageElement = cardElement.querySelector(".card__image");
+  const cardTitleElement = cardElement.querySelector(".card__title");
+  //set the path to the image to the link field of the object
+  cardImageElement.src = cardData.link;
+  //set the image alt text to the name field of the object
+  cardImageElement.alt = cardData.name;
+  //set the card title to the name field of the object, too
+  cardTitleElement.textContent = cardData.name;
+  return cardElement;
 }
 
 /**
@@ -70,3 +88,9 @@ profileEditBtn.addEventListener("click", () => {
 profileModalCloseBtn.addEventListener("click", closePopUp);
 
 profileModalForm.addEventListener("submit", handleProfileModalSubmit);
+
+initialCards.forEach((cardData) => {
+  const cardElement = getCardElement(cardData);
+  //return the ready HTML element with the filled-in data
+  cardListElement.prepend(cardElement);
+});
