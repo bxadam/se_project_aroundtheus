@@ -10,7 +10,7 @@
   padding: 0 19px;
 }
 
-.modal__opened {
+.modal_opened {
   display: flex;
 }
 
@@ -113,7 +113,7 @@
     font-size: 14px;
   }
 
-  .modal__button {
+  .modal__save-button {
     margin-bottom: 25px;
     font-size: 14px;
   }
