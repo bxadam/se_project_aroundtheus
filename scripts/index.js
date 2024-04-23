@@ -37,6 +37,7 @@ const profileSubtextInput = document.querySelector("#profile-subtext-input");
 const profileModalForm = document.querySelector("#modal-form");
 const profileTitle = document.querySelector("#profile-title");
 const profileSubtext = document.querySelector("#profile-subtext");
+
 const addBtn = document.querySelector("#add-button");
 
 const cardAddModal = document.querySelector("#add-card-modal");
@@ -67,9 +68,14 @@ function getCardElement(cardData) {
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardTitleElement = cardElement.querySelector(".card__title");
   const likeBtn = cardElement.querySelector(".card__like-button");
+  const deleteBtn = cardElement.querySelector(".card__delete-button");
 
   likeBtn.addEventListener("click", () => {
     likeBtn.classList.toggle("card__like-button_active");
+  });
+
+  deleteBtn.addEventListener("click", () => {
+    cardElement.remove();
   });
 
   cardImageElement.src = cardData.link;

@@ -35,6 +35,26 @@
   overflow: hidden;
 }
 
+.card__delete-button {
+  background-image: url(../images/Trash.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  padding: 0;
+  width: 18px;
+  height: 19px;
+  align-items: center;
+  border: none;
+  position: relative;
+  left: 250px;
+  top: -340px;
+  z-index: 99;
+}
+
+.card__delete-button:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
 .card__like-button {
   background-image: url(../images/black-heart.svg);
   background-color: transparent;
