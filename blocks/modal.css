@@ -10,7 +10,7 @@
   padding: 0 19px;
 }
 
-.modal_image {
+.modal__image {
   max-width: 75vw;
   max-height: 75vw;
 }
@@ -22,6 +22,15 @@
 .modal__container {
   background-color: white;
   border-radius: 10px;
+  position: relative;
+  margin: auto;
+  max-width: 430px;
+  max-height: 330px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal__container_image {
   position: relative;
   margin: auto;
   max-width: 430px;

@@ -48,14 +48,13 @@ const placeLinkInput = document.querySelector("#place-link-input");
 const placeModalForm = document.querySelector("#place-modal-form");
 
 const imageModal = document.querySelector("#image-modal");
-const imageInput = document.querySelector("#image-closeup");
+const imageInput = document.querySelector(".modal__image");
 const imageModalDescription = document.querySelector(".modal__description");
 const imageClose = document.querySelector("#image-close");
 
 const cardListElement = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-const cardImage = cardTemplate.querySelector(".card__image");
 
 /**
  * Functions
@@ -75,6 +74,7 @@ function getCardElement(cardData) {
   const cardTitleElement = cardElement.querySelector(".card__title");
   const likeBtn = cardElement.querySelector(".card__like-button");
   const deleteBtn = cardElement.querySelector(".card__delete-button");
+  const closeBtn = imageModal.querySelector("#image-close");
 
   likeBtn.addEventListener("click", () => {
     likeBtn.classList.toggle("card__like-button_active");
@@ -82,6 +82,18 @@ function getCardElement(cardData) {
 
   deleteBtn.addEventListener("click", () => {
     cardElement.remove();
+  });
+
+  cardImageElement.addEventListener("click", () => {
+    imageInput.value = cardImageElement.textContent;
+    imageModalDescription.textContent = cardTitleElement.textContent;
+    openModal(imageModal);
+
+    console.log(imageModalDescription.textContent);
+  });
+
+  closeBtn.addEventListener("click", () => {
+    closeModal(imageModal);
   });
 
   cardImageElement.src = cardData.link;
@@ -142,11 +154,3 @@ placeModalCloseBtn.addEventListener("click", () => {
 profileModalForm.addEventListener("submit", handleProfileModalSubmit);
 
 cardAddModal.addEventListener("submit", handlePlaceModalSubmit);
-
-cardImage.addEventListener("click", () => {
-  // imageInput.value = cardImage.textContent;
-  // imageModalDescription.value = placeTitleInput.textContent;
-  // openModal(imageModal);
-
-  console.log("is open");
-});
