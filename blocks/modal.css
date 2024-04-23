@@ -10,6 +10,11 @@
   padding: 0 19px;
 }
 
+.modal_image {
+  max-width: 75vw;
+  max-height: 75vw;
+}
+
 .modal_opened {
   display: flex;
 }

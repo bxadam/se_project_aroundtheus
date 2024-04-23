@@ -47,9 +47,15 @@ const placeTitleInput = document.querySelector("#place-title-input");
 const placeLinkInput = document.querySelector("#place-link-input");
 const placeModalForm = document.querySelector("#place-modal-form");
 
+const imageModal = document.querySelector("#image-modal");
+const imageInput = document.querySelector("#image-closeup");
+const imageModalDescription = document.querySelector(".modal__description");
+const imageClose = document.querySelector("#image-close");
+
 const cardListElement = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
+const cardImage = cardTemplate.querySelector(".card__image");
 
 /**
  * Functions
@@ -136,3 +142,11 @@ placeModalCloseBtn.addEventListener("click", () => {
 profileModalForm.addEventListener("submit", handleProfileModalSubmit);
 
 cardAddModal.addEventListener("submit", handlePlaceModalSubmit);
+
+cardImage.addEventListener("click", () => {
+  // imageInput.value = cardImage.textContent;
+  // imageModalDescription.value = placeTitleInput.textContent;
+  // openModal(imageModal);
+
+  console.log("is open");
+});
