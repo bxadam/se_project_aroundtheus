@@ -75,6 +75,7 @@ function getCardElement(cardData) {
   const likeBtn = cardElement.querySelector(".card__like-button");
   const deleteBtn = cardElement.querySelector(".card__delete-button");
   const closeBtn = imageModal.querySelector("#image-close");
+  const modalContainer = imageModal.querySelector(".modal__container");
 
   likeBtn.addEventListener("click", () => {
     likeBtn.classList.toggle("card__like-button_active");
@@ -85,8 +86,9 @@ function getCardElement(cardData) {
   });
 
   cardImageElement.addEventListener("click", () => {
-    imageInput.value = cardImageElement.textContent;
-    imageModalDescription.textContent = cardTitleElement.textContent;
+    imageInput.src = cardData.link;
+    imageInput.alt = cardData.name;
+    imageModalDescription.textContent = cardData.name;
     openModal(imageModal);
 
     console.log(imageModalDescription.textContent);
