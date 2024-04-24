@@ -81,41 +81,43 @@
         </form>
       </div>
     </div>
-    <div class="modal" id="add-card-modal">
+    <div class="modal" id="new-card-modal">
       <div class="modal__container">
         <button
           class="modal__close"
           type="button"
-          id="place-close-btn"
+          id="new-card-close-btn"
         ></button>
         <h3 class="modal__heading">New Place</h3>
-        <form class="modal__form" id="place-modal-form">
+        <form class="modal__form" id="new-card-modal-form">
           <input
             class="modal__form-box"
             type="text"
             name="title"
             placeholder="Title"
-            id="place-title-input"
+            id="new-card-title-input"
           />
           <input
             class="modal__form-box"
             type="text"
             name="link"
             placeholder="Image URL"
-            id="place-link-input"
+            id="new-card-link-input"
           />
-          <button class="modal__save-button" id="place-save-btn">Create</button>
+          <button class="modal__save-button" id="new-card-save-btn">
+            Create
+          </button>
         </form>
       </div>
     </div>
 
-    <div class="modal" id="image-modal">
+    <div class="modal" id="preview-modal">
       <div class="modal__container-image">
         <button
           class="modal__close modal__close_image"
-          id="image-close"
+          id="preview-close-button"
         ></button>
-        <img src="" alt="" class="modal__image" id="image-closeup" />
+        <img src="" alt="" class="modal__image" id="preview-zoom" />
         <p class="modal__description"></p>
       </div>
     </div>
