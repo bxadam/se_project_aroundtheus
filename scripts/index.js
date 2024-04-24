@@ -66,9 +66,6 @@ function closeModal(modal) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  closeBtn.addEventListener("click", () => {
-    closeModal(imageModal);
-  });
 }
 
 function getCardElement(cardData) {
@@ -107,7 +104,7 @@ function renderCard(cardData) {
   cardListElement.prepend(newCard);
 }
 
-initialCards.forEach((cardData) => renderCard(cardData, ""));
+initialCards.forEach((cardData) => renderCard(cardData));
 
 /**
  * Event Handlers
@@ -124,7 +121,7 @@ function handlePlaceModalSubmit(e) {
   e.preventDefault();
   const name = placeTitleInput.value;
   const link = placeLinkInput.value;
-  renderCard({ name, link }, "");
+  renderCard({ name, link });
   closeModal(cardAddModal);
   placeModalForm.reset();
 }
@@ -149,6 +146,10 @@ profileModalCloseBtn.addEventListener("click", () => {
 
 placeModalCloseBtn.addEventListener("click", () => {
   closeModal(cardAddModal);
+});
+
+closeBtn.addEventListener("click", (modal) => {
+  closeModal(modal);
 });
 
 profileModalForm.addEventListener("submit", handleProfileModalSubmit);
