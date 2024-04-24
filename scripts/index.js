@@ -55,7 +55,7 @@ const imageClose = document.querySelector("#image-close");
 const cardListElement = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-
+const closeBtn = imageModal.querySelector("#image-close");
 /**
  * Functions
  */
@@ -66,6 +66,9 @@ function closeModal(modal) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  closeBtn.addEventListener("click", () => {
+    closeModal(imageModal);
+  });
 }
 
 function getCardElement(cardData) {
@@ -74,8 +77,6 @@ function getCardElement(cardData) {
   const cardTitleElement = cardElement.querySelector(".card__title");
   const likeBtn = cardElement.querySelector(".card__like-button");
   const deleteBtn = cardElement.querySelector(".card__delete-button");
-  const closeBtn = imageModal.querySelector("#image-close");
-  const modalContainer = imageModal.querySelector(".modal__container");
 
   likeBtn.addEventListener("click", () => {
     likeBtn.classList.toggle("card__like-button_active");
@@ -94,10 +95,6 @@ function getCardElement(cardData) {
     console.log(imageModalDescription.textContent);
   });
 
-  closeBtn.addEventListener("click", () => {
-    closeModal(imageModal);
-  });
-
   cardImageElement.src = cardData.link;
   cardImageElement.alt = cardData.name;
   cardTitleElement.textContent = cardData.name;
@@ -110,7 +107,7 @@ function renderCard(cardData) {
   cardListElement.prepend(newCard);
 }
 
-initialCards.forEach((cardData) => renderCard(cardData, cardListElement));
+initialCards.forEach((cardData) => renderCard(cardData, ""));
 
 /**
  * Event Handlers
@@ -127,8 +124,9 @@ function handlePlaceModalSubmit(e) {
   e.preventDefault();
   const name = placeTitleInput.value;
   const link = placeLinkInput.value;
-  renderCard({ name, link }, initialCards);
+  renderCard({ name, link }, "");
   closeModal(cardAddModal);
+  placeModalForm.reset();
 }
 
 /**
