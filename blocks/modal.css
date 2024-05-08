@@ -102,6 +102,17 @@
   line-height: 1.2;
 }
 
+.modal__error {
+  font-size: 12px;
+  line-height: 1.2;
+  font-family: "Inter", Arial, sans-serif;
+  color: #ff0000;
+  position: relative;
+  top: calc(-20% - 20px);
+  padding: 0;
+  margin: 0;
+}
+
 .modal__save-button {
   margin-top: 18px;
   margin-bottom: 36px;

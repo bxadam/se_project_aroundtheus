@@ -69,14 +69,22 @@
             name="title"
             placeholder="Jacques Cousteau"
             id="profile-title-input"
+            required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="modal__error" id="profile-title-input-error"></span>
           <input
             class="modal__form-box"
             type="text"
             name="subtext"
             placeholder="Explorer"
             id="profile-subtext-input"
+            required
+            minlength="2"
+            maxlength="200"
           />
+          <span class="modal__error" id="profile-subtext-input-error"></span>
           <button class="modal__save-button" id="modal-save-btn">Save</button>
         </form>
       </div>
@@ -96,14 +104,20 @@
             name="title"
             placeholder="Title"
             id="new-card-title-input"
+            required
           />
+          <span class="modal__error" id="new-card-title-input-error"></span>
           <input
             class="modal__form-box"
-            type="text"
+            type="url"
             name="link"
             placeholder="Image URL"
             id="new-card-link-input"
+            required
+            minlength="1"
+            maxlength="30"
           />
+          <span class="modal__error" id="new-card-link-input-error"></span>
           <button class="modal__save-button" id="new-card-save-btn">
             Create
           </button>
@@ -139,6 +153,8 @@
       </li>
     </template>
 
+    <!-- Scripts -->
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>
