@@ -63,10 +63,19 @@ const cardTemplate =
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keyup", something);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keyup", something);
+}
+
+function something(e) {
+  if (e.key === "Escape") {
+    const open = document.querySelector(".modal_opened");
+    closeModal(open);
+  }
 }
 
 closeButtons.forEach((button) => {

@@ -57,7 +57,7 @@ function setEventListeners(formElement, options) {
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (e) => {
       checkInputValidity(formElement, inputElement, options);
-      toggleButtonState(inputElements, submitButton);
+      toggleButtonState(inputElements, submitButton, options);
     });
   });
 }
@@ -74,10 +74,10 @@ function enableValidation(options) {
 
 const config = {
   formSelector: ".modal__form",
-  inputSelector: ".modal__form-box",
+  inputSelector: ".modal__input",
   submitButtonSelector: ".modal__save-button",
   inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "modal__input_type_error",
+  inputErrorClass: "modal__input_error",
   errorClass: "modal__error_visible",
 };
 
