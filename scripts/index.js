@@ -40,6 +40,7 @@ const profileSubtext = document.querySelector("#profile-subtext");
 
 const addBtn = document.querySelector("#add-button");
 const closeButtons = document.querySelectorAll(".modal__close");
+const openedModal = document.querySelectorAll(".modal__open");
 
 const newCardModal = document.querySelector("#new-card-modal");
 const newCardModalCloseBtn = document.querySelector("#new-card-close-btn");
@@ -64,17 +65,25 @@ const cardTemplate =
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keyup", something);
+  document.removeEventListener("click", handleModalOpenClickOut);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keyup", something);
+  document.addEventListener("click", handleModalOpenClickOut);
 }
 
 function something(e) {
   if (e.key === "Escape") {
     const open = document.querySelector(".modal_opened");
     closeModal(open);
+  }
+}
+
+function handleModalOpenClickOut(e) {
+  if (e.target.classList.contains("modal__opened")) {
+    closeModal(e.target);
   }
 }
 
