@@ -82,3 +82,8 @@ const config = {
 };
 
 enableValidation(config);
+
+// pseudo code
+// make button inactive state based on checkvalidity when modal is opened
+// close modal upon clicking into .modal__open div
+// on modal open reset value of text content for new place inputs
