@@ -40,8 +40,6 @@ const profileSubtext = document.querySelector("#profile-subtext");
 
 const addBtn = document.querySelector("#add-button");
 const closeButtons = document.querySelectorAll(".modal__close");
-const openedModal = document.querySelectorAll(".modal_open");
-const modal = document.querySelectorAll(".modal");
 
 const newCardModal = document.querySelector("#new-card-modal");
 const newCardModalCloseBtn = document.querySelector("#new-card-close-btn");
@@ -65,17 +63,17 @@ const cardTemplate =
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keyup", something);
-  document.removeEventListener("click", handleModalOpenClickOut);
+  document.removeEventListener("keyup", handleEscape);
+  document.removeEventListener("click", handleOverlay);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keyup", something);
-  document.addEventListener("click", handleModalOpenClickOut);
+  document.addEventListener("keyup", handleEscape);
+  document.addEventListener("click", handleOverlay);
 }
 
-function something(e) {
+function handleEscape(e) {
   if (e.key === "Escape") {
     const open = document.querySelector(".modal_opened");
     closeModal(open);
@@ -145,7 +143,7 @@ function handleNewCardModalSubmit(e) {
   newCardModalForm.reset();
 }
 
-function handleModalOpenClickOut(e) {
+function handleOverlay(e) {
   if (e.target.classList.contains("modal_opened")) {
     closeModal(e.target);
   }
@@ -167,4 +165,4 @@ addBtn.addEventListener("click", () => {
 
 profileModalForm.addEventListener("submit", handleProfileModalSubmit);
 
-newCardModal.addEventListener("submit", handleNewCardModalSubmit);
+newCardModalForm.addEventListener("submit", handleNewCardModalSubmit);
