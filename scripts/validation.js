@@ -60,6 +60,7 @@ function setEventListeners(formElement, options) {
       toggleButtonState(inputElements, submitButton, options);
     });
   });
+  toggleButtonState(inputElements, submitButton, options);
 }
 
 function enableValidation(options) {

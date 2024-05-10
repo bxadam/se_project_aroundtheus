@@ -40,7 +40,8 @@ const profileSubtext = document.querySelector("#profile-subtext");
 
 const addBtn = document.querySelector("#add-button");
 const closeButtons = document.querySelectorAll(".modal__close");
-const openedModal = document.querySelectorAll(".modal__open");
+const openedModal = document.querySelectorAll(".modal_open");
+const modal = document.querySelectorAll(".modal");
 
 const newCardModal = document.querySelector("#new-card-modal");
 const newCardModalCloseBtn = document.querySelector("#new-card-close-btn");
@@ -78,12 +79,6 @@ function something(e) {
   if (e.key === "Escape") {
     const open = document.querySelector(".modal_opened");
     closeModal(open);
-  }
-}
-
-function handleModalOpenClickOut(e) {
-  if (e.target.classList.contains("modal__opened")) {
-    closeModal(e.target);
   }
 }
 
@@ -141,13 +136,19 @@ function handleProfileModalSubmit(e) {
   closeModal(profileEditModal);
 }
 
-function handlenewCardModalSubmit(e) {
+function handleNewCardModalSubmit(e) {
   e.preventDefault();
   const name = newCardTitleInput.value;
   const link = newCardLinkInput.value;
   renderCard({ name, link });
   closeModal(newCardModal);
   newCardModalForm.reset();
+}
+
+function handleModalOpenClickOut(e) {
+  if (e.target.classList.contains("modal_opened")) {
+    closeModal(e.target);
+  }
 }
 
 /**
@@ -166,4 +167,4 @@ addBtn.addEventListener("click", () => {
 
 profileModalForm.addEventListener("submit", handleProfileModalSubmit);
 
-newCardModal.addEventListener("submit", handlenewCardModalSubmit);
+newCardModal.addEventListener("submit", handleNewCardModalSubmit);
