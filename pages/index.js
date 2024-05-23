@@ -98,16 +98,16 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardTitleElement = cardElement.querySelector(".card__title");
-  const likeBtn = cardElement.querySelector(".card__like-button");
-  const deleteBtn = cardElement.querySelector(".card__delete-button");
+  // const likeBtn = cardElement.querySelector(".card__like-button");
+  // const deleteBtn = cardElement.querySelector(".card__delete-button");
 
-  likeBtn.addEventListener("click", () => {
-    likeBtn.classList.toggle("card__like-button_active");
-  });
+  // likeBtn.addEventListener("click", () => {
+  //   likeBtn.classList.toggle("card__like-button_active");
+  // });
 
-  deleteBtn.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  // deleteBtn.addEventListener("click", () => {
+  //   cardElement.remove();
+  // });
 
   cardImageElement.addEventListener("click", () => {
     previewInput.src = cardData.link;
