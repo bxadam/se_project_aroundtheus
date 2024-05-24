@@ -95,8 +95,8 @@ closeButtons.forEach((button) => {
 });
 
 function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageElement = cardElement.querySelector(".card__image");
+  // const cardElement = cardTemplate.cloneNode(true);
+  // const cardImageElement = cardElement.querySelector(".card__image");
   const cardTitleElement = cardElement.querySelector(".card__title");
   // const likeBtn = cardElement.querySelector(".card__like-button");
   // const deleteBtn = cardElement.querySelector(".card__delete-button");
@@ -126,6 +126,8 @@ function getCardElement(cardData) {
 function renderCard(cardData) {
   const newCard = getCardElement(cardData);
   cardListElement.prepend(newCard);
+  //   const card = new Card(cardData, "#card-template");
+  // card.getCard();
 }
 
 initialCards.forEach((cardData) => renderCard(cardData));
