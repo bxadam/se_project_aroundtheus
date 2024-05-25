@@ -38,9 +38,13 @@ export default class Card {
       .content.querySelector(".card")
       .cloneNode(true);
     this._cardImageElement = this._cardElement.querySelector(".card__image");
-    // get card
+    this._cardTitle = this._cardElement.querySelector(".card__title");
+    this._cardImageElement.src = this._link;
+    this._cardTitle.textContent = this._name;
+    this._cardElement.querySelector(".card__");
     // set event listeners
     this._setEventListeners();
     // return the completed card
+    return this._cardElement;
   }
 }

@@ -27,13 +27,6 @@ const initialCards = [
   },
 ];
 
-const cardData = {
-  name: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
-const card = new Card(cardData, "#card-template");
-card.getCard();
-
 /**
  * Elements
  */
@@ -124,10 +117,8 @@ function getCardElement(cardData) {
 }
 
 function renderCard(cardData) {
-  const newCard = getCardElement(cardData);
-  cardListElement.prepend(newCard);
-  //   const card = new Card(cardData, "#card-template");
-  // card.getCard();
+  const card = new Card(cardData, "#card-template");
+  cardListElement.prepend(card.getView());
 }
 
 initialCards.forEach((cardData) => renderCard(cardData));
@@ -135,6 +126,8 @@ initialCards.forEach((cardData) => renderCard(cardData));
 /**
  * Event Handlers
  */
+
+function handleImageClick() {}
 
 function handleProfileModalSubmit(e) {
   e.preventDefault();
