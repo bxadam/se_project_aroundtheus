@@ -17,20 +17,19 @@ export default class Card {
       .addEventListener("click", this._handleDelete);
     //image
     this._cardImageElement.addEventListener("click", () => {
-      this._handleImageClick(this);
+      this._handleImageClick({ name: this._name, link: this._link });
     });
   }
 
-  _handleLike() {
+  _handleLike = () => {
     this._cardElement
       .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
-  }
+  };
 
-  _handleDelete() {
-    this._cardElement.remove();
-    console.log("delete");
-  }
+  _handleDelete = () => {
+    document.querySelector(".card").remove();
+  };
 
   getView() {
     this._cardElement = document
