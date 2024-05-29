@@ -42,10 +42,10 @@ class FormValidator {
     });
     // chnaged submit button state to this ref
     if (foundInvalid) {
-      this._submitButton.classList.add(_inactiveButtonClass);
+      this._submitButton.classList.add(".inactiveButtonClass");
       this._submitButton.disabled = true;
     } else {
-      this._submitButton.classList.remove(_inactiveButtonClass);
+      this._submitButton.classList.remove(".inactiveButtonClass");
       this._submitButton.disabled = false;
     }
   }
