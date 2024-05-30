@@ -43,7 +43,6 @@ const config = {
 
 const profileEditBtn = document.querySelector("#profile-edit-btn");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileModalCloseBtn = document.querySelector("#modal-close-btn");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileSubtextInput = document.querySelector("#profile-subtext-input");
 const profileModalForm = document.querySelector("#modal-form");
@@ -63,11 +62,8 @@ const newCardModalForm = document.querySelector("#new-card-modal-form");
 const previewModal = document.querySelector("#preview-modal");
 const previewInput = document.querySelector("#preview-zoom");
 const previewModalDescription = document.querySelector(".modal__description");
-const previewCloseBtn = previewModal.querySelector("#preview-close-button");
 
 const cardListElement = document.querySelector(".cards__list");
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
 
 /**
  * Functions
