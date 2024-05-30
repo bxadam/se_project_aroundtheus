@@ -26,9 +26,11 @@ class FormValidator {
     errorMessage.classList.add(this._errorClass);
   }
   // fix show/hide input error methods
-  _hideInputError(formElement, inputElement) {
-    const errorMessage = formElement.querySelector(`#${inputElement}-error`);
-    formElement.classList.remove(this._errorClass);
+  _hideInputError(inputElement) {
+    const errorMessage = this._formElement.querySelector(
+      `#${inputElement.id}-error`
+    );
+    this._formElement.classList.remove(this._errorClass);
     errorMessage.textContent = "";
     errorMessage.classList.remove(this._errorClass);
   }
@@ -42,11 +44,11 @@ class FormValidator {
     });
     // chnaged submit button state to this ref
     if (foundInvalid) {
-      this._submitButton.classList.add(".inactiveButtonClass");
-      this._submitButton.disabled = true;
+      this._formElement._submitButton.classList.add(".inactiveButtonClass");
+      this._formElement._submitButton.disabled = true;
     } else {
-      this._submitButton.classList.remove(".inactiveButtonClass");
-      this._submitButton.disabled = false;
+      this._formElement._submitButton.classList.remove(".inactiveButtonClass");
+      this.formElement._submitButton.disabled = false;
     }
   }
 
@@ -63,7 +65,7 @@ class FormValidator {
         this._toggleButtonState(inputElement);
       });
     });
-    // this._toggleButtonState();
+    this._toggleButtonState(this._formElement);
   }
 
   enableValidation() {
