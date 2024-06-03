@@ -1,4 +1,4 @@
-import Card from "../components/card.js";
+import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
@@ -93,33 +93,14 @@ closeButtons.forEach((button) => {
   button.addEventListener("click", () => closeModal(modal));
 });
 
-// function getCardElement(cardData) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageElement = cardElement.querySelector(".card__image");
-//   const cardTitleElement = cardElement.querySelector(".card__title");
-//   const likeBtn = cardElement.querySelector(".card__like-button");
-//   const deleteBtn = cardElement.querySelector(".card__delete-button");
-//   likeBtn.addEventListener("click", () => {
-//     likeBtn.classList.toggle("card__like-button_active");
-//   });
-//   deleteBtn.addEventListener("click", () => {
-//     cardElement.remove();
-//   });
-//   cardImageElement.addEventListener("click", () => {
-//     previewInput.src = cardData.link;
-//     previewInput.alt = cardData.name;
-//     previewModalDescription.textContent = cardData.name;
-//     openModal(previewModal);
-//   });
-//   cardImageElement.src = cardData.link;
-//   cardImageElement.alt = cardData.name;
-//   cardTitleElement.textContent = cardData.name;
-//   return cardElement;
-// }
+function createCard(cardData) {
+  const cardElement = new Card(cardData, "#card-template", handleImageClick);
+  return cardElement.getView();
+}
 
 function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
-  cardListElement.prepend(card.getView());
+  const card = createCard(cardData);
+  cardListElement.prepend(card);
 }
 
 initialCards.forEach((cardData) => renderCard(cardData));

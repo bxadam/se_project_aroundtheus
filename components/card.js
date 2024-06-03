@@ -28,7 +28,7 @@ export default class Card {
   };
 
   _handleDelete = () => {
-    document.querySelector(".card").remove();
+    this._cardElement.remove();
   };
 
   getView() {
@@ -39,11 +39,11 @@ export default class Card {
     this._cardImageElement = this._cardElement.querySelector(".card__image");
     this._cardTitle = this._cardElement.querySelector(".card__title");
     this._cardImageElement.src = this._link;
+    this._cardImageElement.alt = this._name;
     this._cardTitle.textContent = this._name;
-    this._cardElement.querySelector(".card__");
-    // set event listeners
+
     this._setEventListeners();
-    // return the completed card
+
     return this._cardElement;
   }
 }
