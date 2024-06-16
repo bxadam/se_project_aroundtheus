@@ -1,10 +1,10 @@
-# Project 3: Around The U.S.
+# Project 8: Around The U.S.
 
 ### Overview
 
-Intro: This project is made to display a personal profile of Jacques Cousteau and the many places he traveled. It includes pictures of these areas, modifiable
-areas for account info, name, and additional posts. This was created using HTML and CSS as of now.
-<img src="./images/figma.png"> This picture is a figma mockup of the intended web page layout.
+This project is made to display a personal profile of an individual and the many places they have traveled. It includes pictures and descriptions of these places, modifiable areas for account info, name, and a feature for new posts. This was created using HTML/CSS/JavaScript. This app is responsive for all resolutions.
+
+<img src="./images/figma.png"> This picture is the original figma mockup of the intended web page layout.
 
 This project is made so all the elements are displayed correctly on popular screen sizes. This layout works for phones, tablets and computers of various resolutions.
 
