@@ -10,7 +10,6 @@
       content="united states, landscapes, mountains, oceans"
     />
     <meta name="author" content="Brandon Adam" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="icon" href="./favicon.ico" />
   </head>
   <body class="page">
@@ -18,7 +17,7 @@
       <header class="header page__section">
         <img
           class="header__logo"
-          src="./images/logo1.svg"
+          src="<%=require('./images/logo1.svg')%>"
           alt="Around the US logo"
         />
       </header>
@@ -26,8 +25,9 @@
         <section class="profile page__section">
           <img
             class="profile__picture"
-            src="./images/jacques-cousteau.png"
-            alt="Jacque Cousteau Profile Picture"
+            src="<%=require('./images/jacques-cousteau.png')%>"
+            alt="Jacque Cousteau
+          Profile Picture"
           />
           <div class="profile__info">
             <h1 class="profile__title" id="profile-title">Jacques Cousteau</h1>
@@ -159,9 +159,5 @@
         ></button>
       </li>
     </template>
-
-    <!-- Scripts -->
-    <script type="module" src="./pages/index.js"></script>
-    <!-- <script src="./scripts/validation.js"></script> -->
   </body>
 </html>
