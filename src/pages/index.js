@@ -46,7 +46,7 @@ const profileEditBtn = document.querySelector("#profile-edit-btn");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileSubtextInput = document.querySelector("#profile-subtext-input");
-const profileModalForm = document.querySelector("#modal-form");
+const profileModalForm = document.querySelector("#profile-modal-form");
 const profileTitle = document.querySelector("#profile-title");
 const profileSubtext = document.querySelector("#profile-subtext");
 
@@ -54,8 +54,6 @@ const addBtn = document.querySelector("#add-button");
 const closeButtons = document.querySelectorAll(".modal__close");
 
 const newCardModal = document.querySelector("#new-card-modal");
-const newCardModalCloseBtn = document.querySelector("#new-card-close-btn");
-const newCardSaveBtn = document.querySelector("#new-card-save-btn");
 const newCardTitleInput = document.querySelector("#new-card-title-input");
 const newCardLinkInput = document.querySelector("#new-card-link-input");
 const newCardModalForm = document.querySelector("#new-card-modal-form");
@@ -72,37 +70,25 @@ const cardListElement = document.querySelector(".cards__list");
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keyup", handleEscape);
-  document.removeEventListener("click", handleOverlay);
-}
+  document.removeEventListener("keyup", handleEscClose);
+  document.removeEventListener("click", handleOverlayClose);
+} //moved to Popup
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keyup", handleEscape);
-  document.addEventListener("click", handleOverlay);
-}
-
-function handleEscape(e) {
-  if (e.key === "Escape") {
-    const open = document.querySelector(".modal_opened");
-    closeModal(open);
-  }
-}
-
-closeButtons.forEach((button) => {
-  const modal = button.closest(".modal");
-  button.addEventListener("click", () => closeModal(modal));
-});
+  document.addEventListener("keyup", handleEscClose);
+  document.addEventListener("click", handleOverlayClose);
+} //moved to Popup
 
 function createCard(cardData) {
   const cardElement = new Card(cardData, "#card-template", handleImageClick);
   return cardElement.getView();
-}
+} // Moved to section (do i have to import Card.js to Section to use getView?)
 
 function renderCard(cardData) {
   const card = createCard(cardData);
   cardListElement.prepend(card);
-}
+} //moved to section
 
 initialCards.forEach((cardData) => renderCard(cardData));
 
@@ -122,7 +108,7 @@ function handleImageClick(cardData) {
   previewInput.alt = cardData.name;
   previewModalDescription.textContent = cardData.name;
   openModal(previewModal);
-}
+} //moved to PopupWithImage
 
 function handleProfileModalSubmit(e) {
   e.preventDefault();
@@ -140,15 +126,27 @@ function handleNewCardModalSubmit(e) {
   newCardModalForm.reset();
 }
 
-function handleOverlay(e) {
+function handleEscClose(e) {
+  if (e.key === "Escape") {
+    const open = document.querySelector(".modal_opened");
+    closeModal(open);
+  }
+} //moved to Popup
+
+function handleOverlayClose(e) {
   if (e.target.classList.contains("modal_opened")) {
     closeModal(e.target);
   }
-}
+} //moved to Popup
 
 /**
  * Event Listeners
  */
+
+closeButtons.forEach((button) => {
+  const modal = button.closest(".modal");
+  button.addEventListener("click", () => closeModal(modal));
+});
 
 profileEditBtn.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;

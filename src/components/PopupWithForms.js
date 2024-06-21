@@ -10,4 +10,8 @@ export class PopupWithForms extends Popup {
     this._popupForm.reset();
     super.close();
   }
+
+  open() {
+    super.open();
+  }
 }
