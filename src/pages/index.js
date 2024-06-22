@@ -1,4 +1,5 @@
 import Card from "../components/Card.js";
+import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
 
@@ -80,17 +81,31 @@ function openModal(modal) {
   document.addEventListener("click", handleOverlayClose);
 } //moved to Popup
 
-function createCard(cardData) {
-  const cardElement = new Card(cardData, "#card-template", handleImageClick);
-  return cardElement.getView();
-} // Moved to section (do i have to import Card.js to Section to use getView?)
+// function createCard(cardData) {
+//   const cardElement = new Card(cardData, "#card-template", handleImageClick);
+//   return cardElement.getView();
+// } // Moved to section (do i have to import Card.js to Section to use getView?)
 
-function renderCard(cardData) {
-  const card = createCard(cardData);
-  cardListElement.prepend(card);
-} //moved to section
+// function renderCard(cardData) {
+//   const card = createCard(cardData);
+//   cardListElement.prepend(card);
+// } //moved to section
 
-initialCards.forEach((cardData) => renderCard(cardData));
+// initialCards.forEach((cardData) => renderCard(cardData));
+
+// Section Functionality
+
+const renderCard = (cardData) => {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  const cardElement = card.getView();
+  section.addItem(cardElement);
+};
+
+const section = new Section(
+  { items: initialCards, renderer: renderCard },
+  cardListElement
+);
+section.renderItems();
 
 // Validation Functionality
 
