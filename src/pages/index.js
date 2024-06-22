@@ -1,5 +1,6 @@
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
 
@@ -158,10 +159,10 @@ function handleOverlayClose(e) {
  * Event Listeners
  */
 
-closeButtons.forEach((button) => {
-  const modal = button.closest(".modal");
-  button.addEventListener("click", () => closeModal(modal));
-});
+// closeButtons.forEach((button) => {
+//   const modal = button.closest(".modal");
+//   button.addEventListener("click", () => closeModal(modal));
+// });
 
 profileEditBtn.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
