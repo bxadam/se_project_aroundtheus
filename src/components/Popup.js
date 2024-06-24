@@ -21,8 +21,8 @@ export default class Popup {
     }
   };
 
-  _handleOverlayClose = () => {
-    if (this._popupElement.classList.contains("modal_opened")) {
+  _handleOverlayClose = (e) => {
+    if (e.target.classList.contains("modal_opened")) {
       this.close();
     }
   };
