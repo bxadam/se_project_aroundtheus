@@ -1,6 +1,5 @@
 export default class Popup {
   constructor({ popupSelector }) {
-    debugger;
     this._popupElement = document.querySelector(popupSelector);
     this._closeButton = this._popupElement.querySelector(".modal__close");
   }
@@ -18,14 +17,13 @@ export default class Popup {
 
   _handleEscClose = (e) => {
     if (e.key === "Escape") {
-      const open = document.querySelector(".modal_opened");
-      e.target.close(open);
+      this.close();
     }
   };
 
-  _handleOverlayClose = (e) => {
-    if (e.target.classList.contains("modal_opened")) {
-      e.target.close();
+  _handleOverlayClose = () => {
+    if (document.this._popupElement.classList.contains("modal_opened")) {
+      this.close();
     }
   };
 
