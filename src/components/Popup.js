@@ -27,8 +27,6 @@ export default class Popup {
     }
   };
 
-  //make event handler for close button click and add to set event listeners
-
   setEventListeners() {
     this._closeButton.addEventListener("click", () => {
       this.close();
