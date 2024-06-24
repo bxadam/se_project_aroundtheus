@@ -22,7 +22,7 @@ export default class Popup {
   };
 
   _handleOverlayClose = () => {
-    if (document.this._popupElement.classList.contains("modal_opened")) {
+    if (this._popupElement.classList.contains("modal_opened")) {
       this.close();
     }
   };
