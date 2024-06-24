@@ -14,4 +14,8 @@ export class PopupWithForms extends Popup {
   open() {
     super.open();
   }
+
+  _getInputValues() {
+    //use user info to generate an object filled with info from UserInfo
+  }
 }

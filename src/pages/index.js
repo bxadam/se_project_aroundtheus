@@ -3,6 +3,8 @@ import Section from "../components/Section.js";
 import Popup from "../components/Popup.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
+import { PopupWithForms } from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 const initialCards = [
   {
@@ -115,6 +117,18 @@ const cardFormValidator = new FormValidator(config, newCardModalForm);
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 
+// const profileModal = new PopupWithForms({
+//   popupSelector: "#profile-edit-modal",
+//   handleFormSubmit: (data) => {},
+// });
+
+// const cardModal = new PopupWithForms({
+//   popupSelector: "#new-card-modal",
+//   handleFormSubmit: (data) => {},
+// });
+
+const imageModal = new PopupWithImage(".modal");
+imageModal.setEventListeners();
 /**
  * Event Handlers
  */
@@ -124,7 +138,7 @@ function handleImageClick(cardData) {
   previewInput.alt = cardData.name;
   previewModalDescription.textContent = cardData.name;
   openModal(previewModal);
-} //moved to PopupWithImage
+}
 
 function handleProfileModalSubmit(e) {
   e.preventDefault();
@@ -164,6 +178,10 @@ function handleOverlayClose(e) {
 //   button.addEventListener("click", () => closeModal(modal));
 // });
 
+// closeButtons.forEach((button) => {
+//   button.setEventListeners();
+// }); //wtf
+
 profileEditBtn.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileSubtextInput.value = profileSubtext.textContent;
@@ -174,6 +192,10 @@ addBtn.addEventListener("click", () => {
   openModal(newCardModal);
 });
 
-profileModalForm.addEventListener("submit", handleProfileModalSubmit);
+// profileModalForm.addEventListener("submit", handleProfileModalSubmit);
+profileModalForm.setEventListeners();
 
-newCardModalForm.addEventListener("submit", handleNewCardModalSubmit);
+// newCardModalForm.addEventListener("submit", handleNewCardModalSubmit);
+newCardModalForm.setEventListeners();
+
+previewModal.setEventListeners();
