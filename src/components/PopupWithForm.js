@@ -18,4 +18,12 @@ export class PopupWithForms extends Popup {
   _getInputValues() {
     //use user info to generate an object filled with info from UserInfo
   }
+
+  setEventListeners() {
+    this._handleFormSubmit.preventDefault();
+    // profileTitle.textContent = profileTitleInput.value;
+    // profileSubtext.textContent = profileSubtextInput.value;
+    this._popupElement.closeModal();
+    super.setEventListeners();
+  }
 }

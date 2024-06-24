@@ -1,27 +1,19 @@
 export default class Popup {
   constructor({ popupSelector }) {
+    debugger;
     this._popupElement = document.querySelector(popupSelector);
     this._closeButton = this._popupElement.querySelector(".modal__close");
   }
   open() {
     this._popupElement.classList.add("modal_opened");
-    this._popupElement.document.addEventListener("keyup", this._handleEscClose);
-    this._popupElement.document.addEventListener(
-      "click",
-      this._handleOverlayClose
-    );
+    document.addEventListener("keyup", this._handleEscClose);
+    this._popupElement.addEventListener("click", this._handleOverlayClose);
   }
 
   close() {
     this._popupElement.classList.remove("modal_opened");
-    this._popupElement.document.removeEventListener(
-      "keyup",
-      this._handleEscClose
-    );
-    this._popupElement.document.removeEventListener(
-      "click",
-      this._handleOverlayClose
-    );
+    document.removeEventListener("keyup", this._handleEscClose);
+    this._popupElement.removeEventListener("click", this._handleOverlayClose);
   }
 
   _handleEscClose = (e) => {
