@@ -1,46 +1,11 @@
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
-const config = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "modal__input_error",
-  errorClass: "modal__error_visible",
-};
-
+import { initialCards, config } from "../utils/constants.js";
 /**
  * Elements
  */
@@ -109,20 +74,27 @@ function handleImageClick(cardData) {
 }
 
 function handleProfileModalSubmit(inputValues) {
-  profileTitle.textContent = inputValues.title;
-  profileSubtext.textContent = inputValues.subtext;
+  userInfo.setUserInfo(inputValues.title, inputValues.subtext);
+  //   profileTitle.textContent = inputValues.title;
+  //   profileSubtext.textContent = inputValues.subtext;
 }
 
-function handleNewCardModalSubmit() {
-  const name = newCardTitleInput.value;
-  const link = newCardLinkInput.value;
-  renderCard({ name, link });
+function handleNewCardModalSubmit(inputValues) {
+  debugger;
+  renderCard({ name: inputValues.title, link: inputValues.link });
   newCardModalForm.reset();
 }
 
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__subtext",
+});
+
 profileEditBtn.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileSubtextInput.value = profileSubtext.textContent;
+  const { name, job } = userInfo.getUserInfo();
+  profileTitleInput.value = name;
+  profileSubtextInput.value = job;
+
   profileModal.open();
 });
 
