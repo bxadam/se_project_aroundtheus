@@ -19,8 +19,6 @@ const profileSubtext = document.querySelector("#profile-subtext");
 
 const addBtn = document.querySelector("#add-button");
 
-const newCardTitleInput = document.querySelector("#new-card-title-input");
-const newCardLinkInput = document.querySelector("#new-card-link-input");
 const newCardModalForm = document.querySelector("#new-card-modal-form");
 
 const cardListElement = document.querySelector(".cards__list");
@@ -75,8 +73,6 @@ function handleImageClick(cardData) {
 
 function handleProfileModalSubmit(inputValues) {
   userInfo.setUserInfo(inputValues.title, inputValues.subtext);
-  //   profileTitle.textContent = inputValues.title;
-  //   profileSubtext.textContent = inputValues.subtext;
 }
 
 function handleNewCardModalSubmit(inputValues) {
