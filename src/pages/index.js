@@ -4,6 +4,7 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import FormValidator from "../components/FormValidator.js";
+import Api from "../components/Api.js";
 import "../pages/index.css";
 import { initialCards, config } from "../utils/constants.js";
 /**
@@ -35,11 +36,19 @@ const renderCard = (cardData) => {
   section.addItem(cardElement);
 };
 
-const section = new Section(
-  { items: initialCards, renderer: renderCard },
-  cardListElement
-);
-section.renderItems();
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "03a6e48e-c1e2-40b5-8f26-406bbefbcb53",
+    "Content-Type": "application/json",
+  },
+});
+
+let section;
+api.getInitialCards().then((items) => {
+  section = new Section({ items, renderer: renderCard }, cardListElement);
+  section.renderItems();
+});
 
 // Validation Functionality
 
@@ -71,12 +80,16 @@ function handleImageClick(cardData) {
   imageModal.open(cardData);
 }
 
+//adjust to make profile values patch the info in the server
 function handleProfileModalSubmit(inputValues) {
-  userInfo.setUserInfo(inputValues.title, inputValues.subtext);
+  api.setUserInfo(inputValues).then((data) => {
+    userInfo.setUserInfo(data);
+  });
+  userInfo.getUserInfo(inputValues.name, inputValues.about);
 }
 
+// adjust to make new card submission patch the cards array in server
 function handleNewCardModalSubmit(inputValues) {
-  debugger;
   renderCard({ name: inputValues.title, link: inputValues.link });
   newCardModalForm.reset();
 }
