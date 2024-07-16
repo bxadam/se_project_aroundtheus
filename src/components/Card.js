@@ -1,9 +1,16 @@
 export default class Card {
-  constructor({ name, link }, cardSelector, handleImageClick) {
+  constructor(
+    { name, link, _id },
+    cardSelector,
+    handleImageClick,
+    handleDeleteClick
+  ) {
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDeleteClick = handleDeleteClick;
     this._name = name;
     this._link = link;
+    this._id = _id;
     this._cardElement = document
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
@@ -11,26 +18,31 @@ export default class Card {
     this._cardImageElement = this._cardElement.querySelector(".card__image");
     this._cardTitle = this._cardElement.querySelector(".card__title");
     this._likeButton = this._cardElement.querySelector(".card__like-button");
+    this._deleteButton = this._cardElement.querySelector(
+      ".card__delete-button"
+    );
   }
 
   _setEventListeners() {
-    //like button
     this._likeButton.addEventListener("click", this._handleLike);
-    //delete button
-    this._cardElement
-      .querySelector(".card__delete-button")
-      .addEventListener("click", this._handleDelete);
-    //image
+
+    //delete button has to open the Confirmation Modal (does not currently)
+    this._deleteButton.addEventListener("click", () => {
+      this._handleDeleteClick(this);
+    });
+
     this._cardImageElement.addEventListener("click", () => {
       this._handleImageClick({ name: this._name, link: this._link });
     });
   }
 
-  _handleLike = () => {
+  // Call in a .then() after successful response
+  handleLike = () => {
     this._likeButton.classList.toggle("card__like-button_active");
   };
 
-  _handleDelete = () => {
+  // Call in a .then() after successful response
+  delete = () => {
     this._cardElement.remove();
   };
 

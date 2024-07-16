@@ -1,12 +1,13 @@
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import FormValidator from "../components/FormValidator.js";
 import Api from "../components/Api.js";
 import "../pages/index.css";
-import { initialCards, config } from "../utils/constants.js";
+import { config } from "../utils/constants.js";
 /**
  * Elements
  */
@@ -19,8 +20,12 @@ const profileTitle = document.querySelector("#profile-title");
 const profileSubtext = document.querySelector("#profile-subtext");
 
 const addBtn = document.querySelector("#add-button");
+const confirmBtn = document.querySelector("#confirm-close-btn");
+const cardDeleteBtn = document.querySelectorAll("#card__delete-btn");
+const avatarEditBtn = document.querySelector("#avatar-edit-btn");
 
 const newCardModalForm = document.querySelector("#new-card-modal-form");
+const avatarModalForm = document.querySelector("#avatar-modal-form");
 
 const cardListElement = document.querySelector(".cards__list");
 
@@ -31,7 +36,12 @@ const cardListElement = document.querySelector(".cards__list");
 // Section Functionality
 
 const renderCard = (cardData) => {
-  const card = new Card(cardData, "#card-template", handleImageClick);
+  const card = new Card(
+    cardData,
+    "#card-template",
+    handleImageClick,
+    handleDeleteClick
+  );
   const cardElement = card.getView();
   section.addItem(cardElement);
 };
@@ -46,8 +56,15 @@ const api = new Api({
 
 let section;
 api.getInitialCards().then((items) => {
-  section = new Section({ items, renderer: renderCard }, cardListElement);
+  section = new Section(
+    { items: items.reverse(), renderer: renderCard },
+    cardListElement
+  );
   section.renderItems();
+});
+
+api.getUserInfo().then((data) => {
+  userInfo.setUserInfo(data);
 });
 
 // Validation Functionality
@@ -69,6 +86,13 @@ const cardModal = new PopupWithForm(
 );
 cardModal.setEventListeners();
 
+const avatarModal = new PopupWithForm("#avatar-modal", handleAvatarModalSubmit);
+avatarModal.setEventListeners();
+
+//will not populate the modal
+const confirmModal = new PopupWithConfirmation("#confirm-modal");
+confirmModal.setEventListeners();
+
 const imageModal = new PopupWithImage("#preview-modal");
 imageModal.setEventListeners();
 
@@ -80,7 +104,6 @@ function handleImageClick(cardData) {
   imageModal.open(cardData);
 }
 
-//adjust to make profile values patch the info in the server
 function handleProfileModalSubmit(inputValues) {
   api.setUserInfo(inputValues).then((data) => {
     userInfo.setUserInfo(data);
@@ -88,10 +111,43 @@ function handleProfileModalSubmit(inputValues) {
   userInfo.getUserInfo(inputValues.name, inputValues.about);
 }
 
-// adjust to make new card submission patch the cards array in server
-function handleNewCardModalSubmit(inputValues) {
-  renderCard({ name: inputValues.title, link: inputValues.link });
+// adjust to make new card submission update the cards array in server
+function handleNewCardModalSubmit(card) {
+  api.addCard({ name: card.title, link: card.link }).then(({ name, link }) => {
+    renderCard({
+      name,
+      link,
+    });
+  });
   newCardModalForm.reset();
+}
+
+function handleDeleteClick(card) {
+  confirmModal.open();
+  confirmModal.setSubmitHandler(() => {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        card.delete();
+        confirmModal.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
+
+function handleAvatarModalSubmit(url) {
+  api
+    .setAvatar(url)
+    .then(() => {
+      //set the src of profile pic with the new url;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  avatarModalForm.reset();
+  avatarModal.close();
 }
 
 const userInfo = new UserInfo({
@@ -100,13 +156,17 @@ const userInfo = new UserInfo({
 });
 
 profileEditBtn.addEventListener("click", () => {
-  const { name, job } = userInfo.getUserInfo();
+  const { name, about } = userInfo.getUserInfo();
   profileTitleInput.value = name;
-  profileSubtextInput.value = job;
+  profileSubtextInput.value = about;
 
   profileModal.open();
 });
 
 addBtn.addEventListener("click", () => {
   cardModal.open();
+});
+
+avatarEditBtn.addEventListener("click", () => {
+  avatarModal.open();
 });

@@ -144,6 +144,18 @@
   cursor: pointer;
 }
 
+.modal__save-button_confirmation {
+  display: flex;
+  flex-direction: column;
+  max-width: 358px;
+  max-height: 50px;
+  gap: 30px;
+  margin: 0 36px;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+}
+
 .modal__save-button_disabled {
   background-color: #fff;
   pointer-events: none;
