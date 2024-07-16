@@ -49,7 +49,7 @@ export default class Api {
       {
         method: "PATCH",
         headers: this._headers,
-        body: url,
+        body: JSON.stringify(url),
       }
     );
     return this._checkResponse(res);

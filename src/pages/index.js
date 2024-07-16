@@ -18,6 +18,7 @@ const profileSubtextInput = document.querySelector("#profile-subtext-input");
 const profileModalForm = document.querySelector("#profile-modal-form");
 const profileTitle = document.querySelector("#profile-title");
 const profileSubtext = document.querySelector("#profile-subtext");
+const avatarPicture = document.querySelector("#profile__pic");
 
 const addBtn = document.querySelector("#add-button");
 const confirmBtn = document.querySelector("#confirm-close-btn");
@@ -141,7 +142,7 @@ function handleAvatarModalSubmit(url) {
   api
     .setAvatar(url)
     .then(() => {
-      //set the src of profile pic with the new url;
+      UserInfo.setAvatar(url);
     })
     .catch((err) => {
       console.log(err);
@@ -153,6 +154,7 @@ function handleAvatarModalSubmit(url) {
 const userInfo = new UserInfo({
   nameSelector: ".profile__title",
   jobSelector: ".profile__subtext",
+  avatarSelector: ".profile__picture",
 });
 
 profileEditBtn.addEventListener("click", () => {
