@@ -16,14 +16,10 @@ const profileEditBtn = document.querySelector("#profile-edit-btn");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileSubtextInput = document.querySelector("#profile-subtext-input");
 const profileModalForm = document.querySelector("#profile-modal-form");
-const profileTitle = document.querySelector("#profile-title");
-const profileSubtext = document.querySelector("#profile-subtext");
-const avatarPicture = document.querySelector("#profile__pic");
 
 const addBtn = document.querySelector("#add-button");
-const confirmBtn = document.querySelector("#confirm-close-btn");
-const cardDeleteBtn = document.querySelectorAll("#card__delete-btn");
 const avatarEditBtn = document.querySelector("#avatar-edit-btn");
+const modalSubmitBtn = document.querySelector(".modal__save-button");
 
 const newCardModalForm = document.querySelector("#new-card-modal-form");
 const avatarModalForm = document.querySelector("#avatar-modal-form");
@@ -33,6 +29,8 @@ const cardListElement = document.querySelector(".cards__list");
 /**
  * Variables
  */
+
+const isLoading = false;
 
 const editFormValidator = new FormValidator(config, profileModalForm);
 const cardFormValidator = new FormValidator(config, newCardModalForm);
@@ -104,13 +102,15 @@ const userInfo = new UserInfo({
  * Event Handlers
  */
 
+if (isLoading === true) {
+  modalSubmitBtn.textContent = "Saving...";
+}
+
 function handleImageClick(cardData) {
   imageModal.open(cardData);
 }
 
 function handleLikeClick(card) {
-  console.log(12312323);
-  console.log(card._id, card._isLiked);
   api
     .likeCard(card._id, card._isLiked)
     .then(() => {
@@ -122,14 +122,17 @@ function handleLikeClick(card) {
 }
 
 function handleProfileModalSubmit(inputValues) {
+  isLoading = true;
   api
     .setUserInfo(inputValues)
     .then((data) => {
       userInfo.setUserInfo(data);
+      isLoading = false;
     })
     .catch((err) => {
       console.log(err);
     });
+
   userInfo.getUserInfo(inputValues.name, inputValues.about);
 }
 
