@@ -26,7 +26,7 @@
           <div class="profile__avatar-container">
             <img
               class="profile__picture"
-              src="<%=require('./images/jacques-cousteau.png')%>"
+              src=""
               alt="
           Profile Picture"
             />
@@ -169,13 +169,15 @@
     </div>
 
     <div class="modal" id="confirm-modal">
-      <div class="modal__container">
+      <div class="modal__container modal__container_confirmation">
         <button
           class="modal__close"
           type="button"
           id="confirm-close-btn"
         ></button>
-        <h3 class="modal__heading">Are you sure?</h3>
+        <h3 class="modal__heading modal__heading_confirmation">
+          Are you sure?
+        </h3>
         <form class="modal__form">
           <button class="modal__save-button" id="confirm-btn">Yes</button>
         </form>

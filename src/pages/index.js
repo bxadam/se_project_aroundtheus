@@ -31,17 +31,21 @@ const avatarModalForm = document.querySelector("#avatar-modal-form");
 const cardListElement = document.querySelector(".cards__list");
 
 /**
- * Functions
+ * Variables
  */
 
-// Section Functionality
+const editFormValidator = new FormValidator(config, profileModalForm);
+const cardFormValidator = new FormValidator(config, newCardModalForm);
+editFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 
 const renderCard = (cardData) => {
   const card = new Card(
     cardData,
     "#card-template",
     handleImageClick,
-    handleDeleteClick
+    handleDeleteClick,
+    handleLikeClick
   );
   const cardElement = card.getView();
   section.addItem(cardElement);
@@ -66,14 +70,8 @@ api.getInitialCards().then((items) => {
 
 api.getUserInfo().then((data) => {
   userInfo.setUserInfo(data);
+  userInfo.setAvatar(data.avatar);
 });
-
-// Validation Functionality
-
-const editFormValidator = new FormValidator(config, profileModalForm);
-const cardFormValidator = new FormValidator(config, newCardModalForm);
-editFormValidator.enableValidation();
-cardFormValidator.enableValidation();
 
 const profileModal = new PopupWithForm(
   "#profile-edit-modal",
@@ -90,12 +88,17 @@ cardModal.setEventListeners();
 const avatarModal = new PopupWithForm("#avatar-modal", handleAvatarModalSubmit);
 avatarModal.setEventListeners();
 
-//will not populate the modal
 const confirmModal = new PopupWithConfirmation("#confirm-modal");
 confirmModal.setEventListeners();
 
 const imageModal = new PopupWithImage("#preview-modal");
 imageModal.setEventListeners();
+
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__subtext",
+  avatarSelector: ".profile__picture",
+});
 
 /**
  * Event Handlers
@@ -105,21 +108,43 @@ function handleImageClick(cardData) {
   imageModal.open(cardData);
 }
 
+function handleLikeClick(card) {
+  console.log(12312323);
+  console.log(card._id, card._isLiked);
+  api
+    .likeCard(card._id, card._isLiked)
+    .then(() => {
+      card.handleLikeClick();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 function handleProfileModalSubmit(inputValues) {
-  api.setUserInfo(inputValues).then((data) => {
-    userInfo.setUserInfo(data);
-  });
+  api
+    .setUserInfo(inputValues)
+    .then((data) => {
+      userInfo.setUserInfo(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   userInfo.getUserInfo(inputValues.name, inputValues.about);
 }
 
-// adjust to make new card submission update the cards array in server
 function handleNewCardModalSubmit(card) {
-  api.addCard({ name: card.title, link: card.link }).then(({ name, link }) => {
-    renderCard({
-      name,
-      link,
+  api
+    .addCard({ name: card.title, link: card.link })
+    .then(({ name, link }) => {
+      renderCard({
+        name,
+        link,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
-  });
   newCardModalForm.reset();
 }
 
@@ -141,8 +166,8 @@ function handleDeleteClick(card) {
 function handleAvatarModalSubmit(url) {
   api
     .setAvatar(url)
-    .then(() => {
-      userInfo.setAvatar(url);
+    .then((data) => {
+      userInfo.setAvatar(data.avatar);
     })
     .catch((err) => {
       console.log(err);
@@ -151,11 +176,7 @@ function handleAvatarModalSubmit(url) {
   avatarModal.close();
 }
 
-const userInfo = new UserInfo({
-  nameSelector: ".profile__title",
-  jobSelector: ".profile__subtext",
-  avatarSelector: ".profile__picture",
-});
+// Event Listeners
 
 profileEditBtn.addEventListener("click", () => {
   const { name, about } = userInfo.getUserInfo();

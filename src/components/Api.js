@@ -49,7 +49,7 @@ export default class Api {
       {
         method: "PATCH",
         headers: this._headers,
-        body: JSON.stringify({ avatar: url }),
+        body: JSON.stringify({ avatar: url.link }),
       }
     );
     return this._checkResponse(res);
@@ -80,25 +80,15 @@ export default class Api {
     return this._checkResponse(deletedCard);
   }
 
-  async likeCard(id) {
+  async likeCard(id, isLiked) {
+    const method = isLiked ? "DELETE" : "PUT";
     const likeCard = await fetch(
       `https://around-api.en.tripleten-services.com/v1/cards/${id}/likes`,
       {
-        method: "PUT",
+        method: method,
         headers: this._headers,
       }
     );
     return this._checkResponse(likeCard);
-  }
-
-  async dislikeCard(id) {
-    const dislikeCard = await fetch(
-      `https://around-api.en.tripleten-services.com/v1/cards/${id}/likes`,
-      {
-        method: "DELETE",
-        headers: this._headers,
-      }
-    );
-    return this._checkResponse(dislikeCard);
   }
 }
