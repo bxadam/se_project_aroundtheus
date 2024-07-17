@@ -142,7 +142,7 @@ function handleAvatarModalSubmit(url) {
   api
     .setAvatar(url)
     .then(() => {
-      UserInfo.setAvatar(url);
+      userInfo.setAvatar(url);
     })
     .catch((err) => {
       console.log(err);
