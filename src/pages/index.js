@@ -31,8 +31,10 @@ const cardListElement = document.querySelector(".cards__list");
 
 const editFormValidator = new FormValidator(config, profileModalForm);
 const cardFormValidator = new FormValidator(config, newCardModalForm);
+const avatarFormValidator = new FormValidator(config, avatarModalForm);
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 const renderCard = (cardData) => {
   const card = new Card(
@@ -135,11 +137,8 @@ function handleNewCardModalSubmit(card) {
   cardModal.setloading(true, "Saving...");
   api
     .addCard({ name: card.title, link: card.link })
-    .then(({ name, link }) => {
-      renderCard({
-        name,
-        link,
-      });
+    .then((data) => {
+      renderCard(data);
     })
     .catch((err) => {
       console.log(err);
