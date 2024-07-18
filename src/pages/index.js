@@ -19,7 +19,6 @@ const profileModalForm = document.querySelector("#profile-modal-form");
 
 const addBtn = document.querySelector("#add-button");
 const avatarEditBtn = document.querySelector("#avatar-edit-btn");
-const modalSubmitBtn = document.querySelector(".modal__save-button");
 
 const newCardModalForm = document.querySelector("#new-card-modal-form");
 const avatarModalForm = document.querySelector("#avatar-modal-form");
@@ -29,8 +28,6 @@ const cardListElement = document.querySelector(".cards__list");
 /**
  * Variables
  */
-
-const isLoading = false;
 
 const editFormValidator = new FormValidator(config, profileModalForm);
 const cardFormValidator = new FormValidator(config, newCardModalForm);
@@ -102,10 +99,6 @@ const userInfo = new UserInfo({
  * Event Handlers
  */
 
-if (isLoading === true) {
-  modalSubmitBtn.textContent = "Saving...";
-}
-
 function handleImageClick(cardData) {
   imageModal.open(cardData);
 }
@@ -122,21 +115,24 @@ function handleLikeClick(card) {
 }
 
 function handleProfileModalSubmit(inputValues) {
-  isLoading = true;
+  profileModal.setloading(true, "Saving...");
   api
     .setUserInfo(inputValues)
     .then((data) => {
       userInfo.setUserInfo(data);
-      isLoading = false;
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      profileModal.setloading(false, "Save");
     });
 
   userInfo.getUserInfo(inputValues.name, inputValues.about);
 }
 
 function handleNewCardModalSubmit(card) {
+  cardModal.setloading(true, "Saving...");
   api
     .addCard({ name: card.title, link: card.link })
     .then(({ name, link }) => {
@@ -147,6 +143,9 @@ function handleNewCardModalSubmit(card) {
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      cardModal.setloading(false, "Create");
     });
   newCardModalForm.reset();
 }
@@ -167,6 +166,7 @@ function handleDeleteClick(card) {
 }
 
 function handleAvatarModalSubmit(url) {
+  avatarModal.setloading(true, "Saving...");
   api
     .setAvatar(url)
     .then((data) => {
@@ -174,6 +174,9 @@ function handleAvatarModalSubmit(url) {
     })
     .catch((err) => {
       console.log(err);
+    })
+    .finally(() => {
+      avatarModal.setloading(false, "Save");
     });
   avatarModalForm.reset();
   avatarModal.close();

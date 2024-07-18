@@ -67,11 +67,9 @@ export default class Api {
     return this._checkResponse(addedCard);
   }
 
-  async deleteCard(id) {
-    console.log("=======");
-    console.log(id);
+  async deleteCard(_id) {
     const deletedCard = await fetch(
-      `https://around-api.en.tripleten-services.com/v1/cards/${id}`,
+      `https://around-api.en.tripleten-services.com/v1/cards/${_id}`,
       {
         method: "DELETE",
         headers: this._headers,

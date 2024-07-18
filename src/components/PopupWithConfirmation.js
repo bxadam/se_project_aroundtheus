@@ -5,6 +5,7 @@ export default class PopupWithConfirmation extends Popup {
     super({ popupSelector });
     this._form = this._popupElement.querySelector(".modal__form");
     this._button = this._form.querySelector(".modal__save-button");
+    this.submitButton = this._form.querySelector(".modal__save-button");
   }
   setEventListeners() {
     super.setEventListeners();
@@ -16,5 +17,13 @@ export default class PopupWithConfirmation extends Popup {
 
   setSubmitHandler(handler) {
     this._handleFormSubmit = handler;
+  }
+
+  setloading(isLoading, text) {
+    if (isLoading) {
+      this._button.textContent = "Saving...";
+    } else {
+      this._button.textContent = text;
+    }
   }
 }
