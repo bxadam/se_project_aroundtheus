@@ -19,9 +19,17 @@ export default class PopupWithConfirmation extends Popup {
     this._handleFormSubmit = handler;
   }
 
-  setloading(isLoading, text) {
+  setLoading(isLoading, text) {
     if (isLoading) {
       this._button.textContent = "Saving...";
+    } else {
+      this._button.textContent = text;
+    }
+  }
+
+  setDeleting(isLoading, text) {
+    if (isLoading) {
+      this._button.textContent = "Deleting...";
     } else {
       this._button.textContent = text;
     }

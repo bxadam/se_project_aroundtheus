@@ -57,18 +57,28 @@ const api = new Api({
 });
 
 let section;
-api.getInitialCards().then((items) => {
-  section = new Section(
-    { items: items.reverse(), renderer: renderCard },
-    cardListElement
-  );
-  section.renderItems();
-});
+api
+  .getInitialCards()
+  .then((items) => {
+    section = new Section(
+      { items: items.reverse(), renderer: renderCard },
+      cardListElement
+    );
+    section.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
-api.getUserInfo().then((data) => {
-  userInfo.setUserInfo(data);
-  userInfo.setAvatar(data.avatar);
-});
+api
+  .getUserInfo()
+  .then((data) => {
+    userInfo.setUserInfo(data);
+    userInfo.setAvatar(data.avatar);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 const profileModal = new PopupWithForm(
   "#profile-edit-modal",
@@ -112,39 +122,39 @@ function handleLikeClick(card) {
       card.handleLikeClick();
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
     });
 }
 
 function handleProfileModalSubmit(inputValues) {
-  profileModal.setloading(true, "Saving...");
+  profileModal.setLoading(true, "Saving...");
   api
     .setUserInfo(inputValues)
     .then((data) => {
       userInfo.setUserInfo(data);
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
     })
     .finally(() => {
-      profileModal.setloading(false, "Save");
+      profileModal.setLoading(false, "Save");
     });
 
   userInfo.getUserInfo(inputValues.name, inputValues.about);
 }
 
 function handleNewCardModalSubmit(card) {
-  cardModal.setloading(true, "Saving...");
+  cardModal.setLoading(true, "Saving...");
   api
     .addCard({ name: card.title, link: card.link })
     .then((data) => {
       renderCard(data);
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
     })
     .finally(() => {
-      cardModal.setloading(false, "Create");
+      cardModal.setLoading(false, "Create");
     });
   newCardModalForm.reset();
 }
@@ -152,6 +162,7 @@ function handleNewCardModalSubmit(card) {
 function handleDeleteClick(card) {
   confirmModal.open();
   confirmModal.setSubmitHandler(() => {
+    confirmModal.setDeleting(true, "Deleting...");
     api
       .deleteCard(card._id)
       .then(() => {
@@ -159,7 +170,10 @@ function handleDeleteClick(card) {
         confirmModal.close();
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
+      })
+      .finally(() => {
+        confirmModal.setDeleting(false, "Delete");
       });
   });
 }
@@ -172,7 +186,7 @@ function handleAvatarModalSubmit(url) {
       userInfo.setAvatar(data.avatar);
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
     })
     .finally(() => {
       avatarModal.setloading(false, "Save");
