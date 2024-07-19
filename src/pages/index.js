@@ -149,6 +149,7 @@ function handleNewCardModalSubmit(card) {
     .addCard({ name: card.title, link: card.link })
     .then((data) => {
       renderCard(data);
+      newCardModalForm.reset();
     })
     .catch((err) => {
       console.error(err);
@@ -156,7 +157,6 @@ function handleNewCardModalSubmit(card) {
     .finally(() => {
       cardModal.setLoading(false, "Create");
     });
-  newCardModalForm.reset();
 }
 
 function handleDeleteClick(card) {
@@ -184,6 +184,8 @@ function handleAvatarModalSubmit(url) {
     .setAvatar(url)
     .then((data) => {
       userInfo.setAvatar(data.avatar);
+      avatarModalForm.reset();
+      avatarModal.close();
     })
     .catch((err) => {
       console.error(err);
@@ -191,8 +193,6 @@ function handleAvatarModalSubmit(url) {
     .finally(() => {
       avatarModal.setloading(false, "Save");
     });
-  avatarModalForm.reset();
-  avatarModal.close();
 }
 
 // Event Listeners
