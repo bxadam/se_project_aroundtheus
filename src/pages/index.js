@@ -132,6 +132,7 @@ function handleProfileModalSubmit(inputValues) {
     .setUserInfo(inputValues)
     .then((data) => {
       userInfo.setUserInfo(data);
+      editFormValidator.disableButton();
     })
     .catch((err) => {
       console.error(err);
@@ -150,6 +151,7 @@ function handleNewCardModalSubmit(card) {
     .then((data) => {
       renderCard(data);
       newCardModalForm.reset();
+      cardFormValidator.disableButton();
     })
     .catch((err) => {
       console.error(err);
@@ -179,7 +181,7 @@ function handleDeleteClick(card) {
 }
 
 function handleAvatarModalSubmit(url) {
-  avatarModal.setloading(true, "Saving...");
+  avatarModal.setLoading(true, "Saving...");
   api
     .setAvatar(url)
     .then((data) => {
@@ -191,7 +193,7 @@ function handleAvatarModalSubmit(url) {
       console.error(err);
     })
     .finally(() => {
-      avatarModal.setloading(false, "Save");
+      avatarModal.setLoading(false, "Save");
     });
 }
 
@@ -202,13 +204,17 @@ profileEditBtn.addEventListener("click", () => {
   profileTitleInput.value = name;
   profileSubtextInput.value = about;
 
+  editFormValidator.resetValidation();
+
   profileModal.open();
 });
 
 addBtn.addEventListener("click", () => {
   cardModal.open();
+  cardFormValidator.resetValidation();
 });
 
 avatarEditBtn.addEventListener("click", () => {
   avatarModal.open();
+  avatarFormValidator.resetValidation();
 });
