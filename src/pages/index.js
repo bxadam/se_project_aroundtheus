@@ -133,6 +133,7 @@ function handleProfileModalSubmit(inputValues) {
     .then((data) => {
       userInfo.setUserInfo(data);
       editFormValidator.disableButton();
+      profileModal.close();
     })
     .catch((err) => {
       console.error(err);
@@ -152,6 +153,7 @@ function handleNewCardModalSubmit(card) {
       renderCard(data);
       newCardModalForm.reset();
       cardFormValidator.disableButton();
+      cardModal.close();
     })
     .catch((err) => {
       console.error(err);
