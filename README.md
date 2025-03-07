@@ -3,9 +3,7 @@
 ### Overview
 
 This project is made to display a personal profile of an individual and the many places they have traveled. It includes pictures and descriptions of these places, modifiable areas for account info, name, and a feature for new posts. This was created using HTML/CSS/JavaScript. This app is responsive for all resolutions.
-
-<img src="./images/figma.png"> This picture is the original figma mockup of the intended web page layout.
-
+ 
 This project is made so all the elements are displayed correctly on popular screen sizes. This layout works for phones, tablets and computers of various resolutions.
 
 **Figma**
