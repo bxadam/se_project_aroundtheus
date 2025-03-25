@@ -30,7 +30,7 @@ class FormValidator {
     const errorMessage = this._formElement.querySelector(
       `#${inputElement.id}-error`
     );
-    this._formElement.classList.remove(this._errorClass);
+    inputElement.classList.remove(this._inputErrorClass);
     errorMessage.textContent = "";
     errorMessage.classList.remove(this._errorClass);
   }
@@ -66,6 +66,9 @@ class FormValidator {
     this._submitButton = this._formElement.querySelector(
       this._submitButtonSelector
     );
+
+    this.disableButton(); //to make sure the button is disabled on page load
+
     this._inputElements.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
@@ -77,10 +80,15 @@ class FormValidator {
   enableValidation() {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
-      this.disableButton();
     });
     this._setEventListeners();
-    this.disableButton();
+  }
+
+  resetValidation() {
+    this._inputElements.forEach((inputElement) => {
+      this._checkInputValidity(inputElement);
+    });
+    this._toggleButtonState();
   }
 }
 
